@@ -31,50 +31,40 @@ Audio → Transcription → Linguistic Feature Extraction → ML Model → Score
 
 1) Speech Recognition
 
-Audio files are transcribed using Whisper to convert speech into text.
-This step transforms raw speech into structured textual data suitable for linguistic analysis.
+  Audio files are transcribed using Whisper to convert speech into text.  
+  This step transforms raw speech into structured textual data suitable for linguistic analysis.
 
 2) Feature Engineering
 
-Instead of relying on simple word counts, the system extracts advanced linguistic indicators such as:
+  Instead of relying on simple word counts, the system extracts advanced linguistic indicators such as:
 
-Grammar error density
-
-Lexical diversity
-
-Sentence length metrics
-
-Pause density (fluency proxy using transcription segments)
-
-Readability score (Flesch Reading Ease)
-
-Repetition ratio
+- Grammar error density  
+- Lexical diversity  
+- Sentence length metrics  
+- Pause density (fluency proxy using transcription segments)  
+- Readability score (Flesch Reading Ease)  
+- Repetition ratio  
 
 These features collectively capture:
 
-Structural correctness
-
-Vocabulary richness
-
-Sentence formation quality
-
-Speech fluency patterns
+- Structural correctness  
+- Vocabulary richness  
+- Sentence formation quality  
+- Speech fluency patterns  
 
 3) Model Training
 
-An XGBoost Regressor is trained on structured linguistic features.
+  An XGBoost Regressor is trained on structured linguistic features.
 
-Validation Strategy
+### Validation Strategy
 
-80–20 train-validation split
+- 80–20 train-validation split  
+- Evaluation using Mean Squared Error (MSE)  
+- Root Mean Squared Error (RMSE) for interpretability  
 
-Evaluation using Mean Squared Error (MSE)
+ Validation RMSE: ~1.09
 
-Root Mean Squared Error (RMSE) for interpretability
-
-Validation RMSE: ~1.09
-
-This indicates the model predicts grammar scores within approximately ±1 point on average.
+ This indicates the model predicts grammar scores within approximately ±1 point on average.
 
 ## Output Example 
 
@@ -88,31 +78,21 @@ This indicates the model predicts grammar scores within approximately ±1 point 
 
 ## Future Improvements 
 
-Incorporating transformer-based sentence embeddings
-
-Adding pronunciation and speech-rate metrics
-
-Fine-tuning Whisper for accent-specific robustness
-
-Exploring LightGBM or CatBoost for comparison
-
-Developing an end-to-end neural scoring architecture
+- Incorporating transformer-based sentence embeddings  
+- Adding pronunciation and speech-rate metrics  
+- Fine-tuning Whisper for accent-specific robustness  
+- Exploring LightGBM or CatBoost for comparison  
+- Developing an end-to-end neural scoring architecture  
 
 ## Technologies Used 
 
-Python
-
-Whisper (Speech-to-Text)
-
-LanguageTool (Grammar checking)
-
-TextStat (Readability metrics)
-
-XGBoost
-
-Scikit-learn
-
-Librosa
+- Python  
+- Whisper (Speech-to-Text)  
+- LanguageTool (Grammar checking)  
+- TextStat (Readability metrics)  
+- XGBoost  
+- Scikit-learn  
+- Librosa  
 
 ## How to Run 
 
